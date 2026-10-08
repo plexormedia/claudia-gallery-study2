@@ -13,7 +13,21 @@ read, but the line numbers always refer to the real file.
 
 ## Before you start: trying things from an iPad
 
-Most sections end with **Try it** experiments. The easiest place for CSS experiments is
+Most sections end with **Try it** experiments. There are two ways to try them.
+
+**Tap them in the [playgrounds](https://plexormedia.github.io/claudia-gallery-study2/play/).** These three pages are
+built from the homepage's own stylesheet and code, so you can experiment without editing a file, and nothing you do
+there changes the site:
+
+- The [CSS lab](https://plexormedia.github.io/claudia-gallery-study2/play/lab.html) shows the homepage in a frame, at
+  phone, iPad or laptop width, and applies any CSS you type at once. Every CSS **Try it** in this guide is there, one
+  tap away.
+- The [split-flap playground](https://plexormedia.github.io/claudia-gallery-study2/play/flaps.html) puts the board's
+  timing and tile size on sliders and charts every run (section 5).
+- The [face-box playground](https://plexormedia.github.io/claudia-gallery-study2/play/facebox.html) crops a hero photo
+  to any screen and works out the face box step by step, as place() does (section 6).
+
+**Add them to the copy** when you want to keep a change. The easiest place for CSS is
 [`static/css/study-copy.css`](static/css/study-copy.css). The page loads it after `site.css`, so a rule you add there
 wins over the original without changing it.
 
@@ -255,7 +269,10 @@ Plain `var()` can't add transparency to a hex colour, which is why the rgba valu
 
 ### Try it: colour
 
-**1. Re-tint the accent.** Add this to `study-copy.css`:
+All three are in the [CSS lab](https://plexormedia.github.io/claudia-gallery-study2/play/lab.html), one tap each. To
+keep one, add it to `study-copy.css`.
+
+**1. Re-tint the accent.**
 
 ```css
 :root { --clay: #3fa7a0; --clay2: #63c7c0; }
@@ -495,6 +512,9 @@ Three patterns:
   uses the accent.
 
 ### Try it: type
+
+All three are in the [CSS lab](https://plexormedia.github.io/claudia-gallery-study2/play/lab.html), one tap each. The
+third switches the frame to phone width, where its media query applies.
 
 **1. Swap the display face.**
 
@@ -929,6 +949,10 @@ This copy keeps the bug, to stay faithful to the original. To fix it here, add t
 
 ### Try it: layout
 
+All four are in the [CSS lab](https://plexormedia.github.io/claudia-gallery-study2/play/lab.html), one tap each. Its
+frame can also be as wide as an iPad in portrait (820px) or in landscape (1180px), so you can check each result in both
+orientations without turning your iPad.
+
 **1. Fix the looks strip.** Add the three lines from 4.4 and 4.9 to `study-copy.css`, then compare the strip on your
 iPad in both orientations.
 
@@ -1184,6 +1208,10 @@ C's, and D's before U's. The base order still runs left to right, so the word se
 loosely, like a real board where every drum spins on its own. The whole word settles between about 0.95 and 1.3
 seconds after the start: the last tile's stop time, plus up to one tick.
 
+The [split-flap playground](https://plexormedia.github.io/claudia-gallery-study2/play/flaps.html) draws this chart for
+every run, with the real stop and landing times, and puts each of these numbers on a slider. Slow motion plays a run
+five times slower, so you can watch the tiles land.
+
 ### 5.5 Build your own
 
 This is a complete page with one board and an Again button. Paste it into an empty `.html` file and open it in a
@@ -1296,6 +1324,9 @@ In the snippet above, or in `site.js` [L26](static/js/site.js#L26) and [L30](sta
 - **A bigger board.** `.flaps { --fw: 120px; }`, on the board (see the warning in 5.2).
 - **Replay on hover or touch.** `board.addEventListener("pointerenter", () => flapBoard(board));`
 
+The first four are also presets in the
+[split-flap playground](https://plexormedia.github.io/claudia-gallery-study2/play/flaps.html), one tap each.
+
 ---
 
 ## 6. The face boxes
@@ -1403,6 +1434,10 @@ width sticks out. `object-position: 66%` hides 110.1px of that on the left and 5
 > file to suit the window (here the 1800px one) and reports its size divided by the file's density, which works out at
 > the width of the window the file was chosen for: 1439 × 806 in this measurement. For place() only the photo's shape
 > matters, and the three files have the same shape, so the result is the same whichever file loads.
+
+The [face-box playground](https://plexormedia.github.io/claudia-gallery-study2/play/facebox.html) runs this arithmetic
+for any screen you choose and shows it in a table like the one above. It loads the 1800px file without `srcset`, so its
+natural size is 1800 × 1008 and a few decimals differ, but the box lands in the same place: left 719.0px, top 180.3px.
 
 **On a phone** the same code does something more dramatic. In a 375 × 812 window the hero is tall and narrow, so the
 height decides the scale, and the photo is drawn 1449.7px wide, almost four times the width of the screen. Most of it
@@ -1514,7 +1549,8 @@ place() works out each box for the photo at its final size, `scale(1)`. While th
 little bigger than its box. Just after the box has faded in (1.5 seconds after the slide turns on), the ESCAPE VELOCITY
 face reaches 12px past the box's right edge; after 3 seconds the gap is 6px, and after 5 seconds 2px. So the box
 appears slightly loose and tightens onto the face as the photo settles. (The first slide doesn't zoom when the page
-loads: it has the class `on` from the start, and transitions don't run on a page's first styles.)
+loads: it has the class `on` from the start, and transitions don't run on a page's first styles.) The face-box
+playground has the zoom on a slider: at 102.6%, where the zoom is 1.5 seconds in, the box misses by 12px.
 
 ### 6.7 Reuse it: coverBox()
 
@@ -1544,6 +1580,10 @@ For `object-fit: contain`, change `Math.max` to `Math.min`. With the same values
 806.1, with empty bands above and below), and the box lands at left 743.0px, top 189.6px.
 
 ### Try it: face boxes
+
+The CSS of all three is in the [CSS lab](https://plexormedia.github.io/claudia-gallery-study2/play/lab.html), one tap
+each. The JavaScript half of the first two, `Math.min` for contain and asking the image for its position, is the
+"Fixed" place() in the [face-box playground](https://plexormedia.github.io/claudia-gallery-study2/play/facebox.html).
 
 **1. Contain instead of cover.**
 

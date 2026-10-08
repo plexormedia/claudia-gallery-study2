@@ -8,6 +8,9 @@ A study copy of the homepage of [claudia.gallery](https://claudia.gallery/), reb
 - Terms for using Claudia and the site's images: https://claudia.gallery/use/
 - **Study guide: [STUDY.md](STUDY.md)** explains how the page is built: the colour and type system, the layout grid, and
   the code behind the split-flap board and the face boxes, with diagrams and experiments to try.
+- **Playgrounds: https://plexormedia.github.io/claudia-gallery-study2/play/** are three pages for trying the guide's
+  experiments by tapping: a CSS lab that shows the homepage with your CSS applied, a split-flap playground and a
+  face-box playground.
 
 ## What's here
 
@@ -15,11 +18,12 @@ A study copy of the homepage of [claudia.gallery](https://claudia.gallery/), reb
 |---|---|
 | `index.html` | The original homepage, adapted as listed below |
 | `static/css/site.css` | The original stylesheet. It also holds the styles for the site's other pages (film rooms, gallery, lightbox, wiki) |
-| `static/css/study-copy.css` | The only new styles: the "Study copy" tag and the footer note |
+| `static/css/study-copy.css` | The homepage's only new styles: the "Study copy" tag and the footer note |
 | `static/js/site.js` | The original script: split-flaps, hero slideshow and detector boxes, header, video loops, copy buttons, gallery, lightbox, film player |
 | `static/js/hls.light.min.js` | hls.js 1.7.3 (Apache 2.0), byte-identical to the file the original serves |
 | `static/fonts/` | The fonts, rebuilt from their official releases. See `static/fonts/README.md` |
 | `STUDY.md`, `docs/study/` | The study guide and its figures |
+| `play/` | The playgrounds. New pages, not part of the original: they use its stylesheet, fonts and components, and `play/play.css` adds their controls |
 
 Only the homepage is copied. Links to the site's other pages, and all images, videos and films, point to claudia.gallery,
 which allows other sites to load them. Please keep it that way: no bulk downloading.
@@ -50,6 +54,8 @@ the homepage doesn't use them.
 - The study guide's figures in `docs/study/` are drawn from the page. Two of them (`looks-bug.jpg`, `hero-facebox.png`)
   are screenshots with Claudia's images in them, used on the same terms.
 - The page's HTML, CSS and JavaScript belong to their author; they are reproduced here for study, with credit.
+- The playgrounds in `play/` were written for this copy. They repeat the site's split-flap and place() logic so it can
+  be shown step by step, and name the original lines they follow.
 - Fonts: GUST Font License (TeX Gyre Heros) and SIL Open Font License 1.1 (DINish, IBM Plex Mono). Licence files and
   details are in `static/fonts/`.
 - hls.js: Apache License 2.0, see `static/js/LICENSE-hls.js.txt`.

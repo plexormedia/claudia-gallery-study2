@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CSS lab · claudia.gallery (study copy)</title>
+<meta name="description" content="The study copy's homepage in a frame at any width, with your CSS applied to it as you type, and every CSS experiment from the study guide one tap away.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="icon" href="https://claudia.gallery/favicon.png" type="image/png">
+<link rel="preload" href="../static/fonts/dinishcn-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../static/fonts/plexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../static/css/site.css">
+<link rel="stylesheet" href="../static/css/study-copy.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  /* the frame panel sticks at every width. On wide screens it shares one grid row with the controls, so that row
+     is as tall as the controls and the panel has room to stick. */
+  .lab-page .main-view { position: sticky; top: calc(var(--hh) + 14px); z-index: 5; }
+  @media (min-width: 1001px) { .lab-page .bench { grid-template-areas: "main ctl"; grid-template-rows: auto; } }
+  @media (max-width: 1000px) { .lab-page .main-view { top: var(--hh); } }
+  .main-view .panel-h { flex-wrap: nowrap; }
+  .main-view .panel-h .chips, .foot-row .chips { min-width: 0; }
+  .frame-foot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px 14px 14px; border-top: 1px solid var(--line); }
+  .foot-row { display: flex; align-items: center; gap: 10px; }
+  .frame-note { margin-left: auto; white-space: nowrap; }
+  .frame-foot .say { min-height: 4.5em; }            /* room for three lines, so the frame doesn't jump as the text changes */
+  /* little below the bench, so the stuck panel isn't pushed up under the header when you reach the end of the page */
+  .lab-page .play { padding-bottom: 20px; }
+  .lab-page .play-f { margin-top: 0; }
+  .frame-wrap { margin: 0 auto; overflow: hidden; background: var(--bg); }
+  .frame-wrap iframe { display: block; border: 0; transform-origin: 0 0; background: var(--bg); }
+  .exp .field + .field { margin-top: 2px; }
+  .exp .chips button { text-transform: none; letter-spacing: .02em; font-size: 12px; }
+</style>
+</head>
+<body class="lab-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-h always">
+  <a class="brand" href="../" aria-label="claudia.gallery study copy, home"><span class="streak"></span>Claudia<small>.gallery</small></a>
+  <a class="study-tag" href="../#about-this-copy"><span class="st-long">Study </span>copy</a>
+  <button class="menu-b" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Playgrounds">
+    <a href="./">Playgrounds</a><a href="flaps.html">Split-flap</a><a href="facebox.html">Face box</a><a href="lab.html" aria-current="page">CSS lab</a><a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md">The guide</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="sec play">
+  <header class="sec-h"><span class="idx">02–06</span><h2>CSS lab</h2><p class="aside lab">Guide · sections 2 to 6 · <a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md">read it</a></p></header>
+  <p class="intro">The homepage of this copy, in a frame. Type CSS or tap an experiment from the guide, and the page in the frame changes at once. Nothing you do here changes the real site.</p>
+
+  <div class="bench">
+    <div class="pair">
+      <div class="panel main-view" id="frame-panel">
+        <div class="panel-h"><div class="chips line" id="widths" aria-label="Frame width"></div><button class="btn sm" id="reload" type="button">Reload</button></div>
+        <div class="frame-wrap" id="frame-wrap"><iframe id="frame" src="../index.html" title="The study copy's homepage, with your CSS applied"></iframe></div>
+        <div class="panel-b frame-foot">
+          <div class="foot-row"><div class="chips line" id="jumps" aria-label="Jump to a section"></div><span class="lab frame-note" id="frame-note"></span></div>
+          <p class="say" id="explain" aria-live="polite">Tap an experiment from the guide, and what to look for appears here.</p>
+        </div>
+      </div>
+
+      <div class="stack ctl-panel">
+        <div class="panel">
+          <div class="panel-h"><label class="lab" for="css">Your CSS</label><span class="lab" id="applied" aria-live="polite"></span></div>
+          <textarea class="code-in" id="css" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="/* Type CSS here, or tap an experiment below */"></textarea>
+          <div class="panel-b">
+            <div class="row"><button class="btn" id="copy" type="button">Copy</button><button class="btn" id="clear" type="button">Clear</button></div>
+            <p class="hint" style="margin-top:12px">To keep a change, paste it at the end of <a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/static/css/study-copy.css">static/css/study-copy.css</a> on GitHub.</p>
+          </div>
+        </div>
+
+        <div class="panel exp">
+          <div class="panel-h"><span class="lab">Experiments from the guide</span></div>
+          <div class="ctl" id="experiments"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="play-f"><p>Playgrounds for the study copy of the claudia.gallery homepage. Claudia by anabology; the site's design and code belong to its author. <a href="https://github.com/plexormedia/claudia-gallery-study2">Source and credits</a>.</p></footer>
+<script src="play.js" defer></script>
+<script src="lab.js" defer></script>
+</body>
+</html>

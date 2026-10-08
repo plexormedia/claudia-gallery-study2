@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Split-flap playground · claudia.gallery (study copy)</title>
+<meta name="description" content="The hero's split-flap board with the numbers from its code on sliders, and a chart of when each tile stops and lands.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="icon" href="https://claudia.gallery/favicon.png" type="image/png">
+<link rel="preload" href="../static/fonts/heros-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../static/fonts/dinishcn-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../static/fonts/plexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../static/css/site.css">
+<link rel="stylesheet" href="../static/css/study-copy.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .board-stage { display: grid; place-items: center; min-height: 230px; padding: clamp(28px, 5vw, 56px) 14px; background: #000; overflow: hidden; }
+  .play-board { justify-content: center; }
+  .play-board .flap.tick { animation-duration: calc(.07s * var(--slow, 1)); }
+  .stage-bar { border-top: 1px solid var(--line); border-bottom: 0; }
+  @media (max-width: 1000px) { .board-stage { min-height: 0; padding: 26px 14px; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-h always">
+  <a class="brand" href="../" aria-label="claudia.gallery study copy, home"><span class="streak"></span>Claudia<small>.gallery</small></a>
+  <a class="study-tag" href="../#about-this-copy"><span class="st-long">Study </span>copy</a>
+  <button class="menu-b" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Playgrounds">
+    <a href="./">Playgrounds</a><a href="flaps.html" aria-current="page">Split-flap</a><a href="facebox.html">Face box</a><a href="lab.html">CSS lab</a><a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md">The guide</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="sec play">
+  <header class="sec-h"><span class="idx">05</span><h2>Split-flap</h2><p class="aside lab">Guide · section 5 · <a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md#5-the-split-flap-board">read it</a></p></header>
+  <p class="intro">The hero's board, with the numbers from its code on sliders. Change one and the board plays again. The chart below shows when each tile stops and when it lands.</p>
+
+  <div class="bench">
+    <div class="pair">
+      <div class="panel main-view">
+        <div class="board-stage"><div class="flaps play-board" id="board" role="img" aria-label="CLAUDIA"></div></div>
+        <div class="panel-h stage-bar">
+          <div class="row">
+            <button class="btn solid" id="play" type="button">Play</button>
+            <button class="btn" id="slow" type="button" aria-pressed="false">Slow motion</button>
+          </div>
+          <span class="lab" id="status" aria-live="polite">Ready</span>
+        </div>
+      </div>
+
+      <div class="panel ctl-panel">
+        <div class="panel-h"><span class="lab">Controls</span><button class="btn sm" id="reset" type="button">Reset</button></div>
+        <div class="ctl">
+          <div class="field">
+            <div class="field-h"><label class="lab" for="word">Word</label><span class="val" id="word-n">7 tiles</span></div>
+            <input class="input" id="word" maxlength="14" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" value="CLAUDIA">
+            <p class="hint">Letters, digits and spaces, up to 14. A space becomes a blank tile.</p>
+          </div>
+
+          <div class="field">
+            <span class="lab">Try a variation from the guide</span>
+            <div class="chips" id="presets"></div>
+          </div>
+
+          <div class="field">
+            <div class="field-h"><label class="lab" for="base">First stop</label><output class="val" id="base-o" for="base"></output></div>
+            <input class="range" type="range" id="base" min="0" max="1000" step="5">
+            <p class="hint">The earliest the first tile can stop.</p>
+          </div>
+          <div class="field">
+            <div class="field-h"><label class="lab" for="step">Step per tile</label><output class="val" id="step-o" for="step"></output></div>
+            <input class="range" type="range" id="step" min="0" max="300" step="5">
+            <p class="hint">How much later each next tile's window starts.</p>
+          </div>
+          <div class="field">
+            <div class="field-h"><label class="lab" for="spread">Random part</label><output class="val" id="spread-o" for="spread"></output></div>
+            <input class="range" type="range" id="spread" min="0" max="600" step="5">
+            <p class="hint">Each tile stops somewhere in a window this wide.</p>
+          </div>
+          <div class="field">
+            <div class="field-h"><label class="lab" for="interval">Time between letters</label><output class="val" id="interval-o" for="interval"></output></div>
+            <input class="range" type="range" id="interval" min="16" max="300" step="1">
+            <p class="hint">The wait before the next random letter, plus up to one frame.</p>
+          </div>
+          <div class="field">
+            <div class="field-h"><label class="lab" for="fw">Tile width</label><output class="val" id="fw-o" for="fw"></output></div>
+            <input class="range" type="range" id="fw" min="16" max="140" step="1">
+            <p class="hint">This is <code>--fw</code>. The height, the letter and the corners follow it.</p>
+            <div class="row"><button class="btn sm" id="fw-site" type="button">Use the site's size</button></div>
+          </div>
+          <div class="field">
+            <span class="lab">Random letters</span>
+            <div class="chips" id="alphabet">
+              <button type="button" data-digits="0" aria-pressed="true">A–Z and 0–9</button>
+              <button type="button" data-digits="1" aria-pressed="false">Digits only</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack extra">
+      <div class="prompt live">
+        <div class="bar"><span class="lab">The code, with your numbers</span></div>
+        <pre id="code"></pre>
+      </div>
+      <p class="say" id="insight"></p>
+
+      <div class="panel">
+        <div class="panel-h"><span class="lab">When each tile stops and lands</span><span class="lab">ms after Play</span></div>
+        <div class="legend" aria-hidden="true">
+          <span><i class="sw flip"></i>Always flipping</span>
+          <span><i class="sw win"></i>Stops somewhere in here</span>
+          <span><i class="sw stop"></i>Stopped</span>
+          <span><i class="sw land"></i>Landed</span>
+        </div>
+        <div class="chart" id="chart"></div>
+        <p class="hint chart-note" id="readout" aria-live="polite">Tap a row to see its numbers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="play-f"><p>Playgrounds for the study copy of the claudia.gallery homepage. Claudia by anabology; the site's design and code belong to its author. <a href="https://github.com/plexormedia/claudia-gallery-study2">Source and credits</a>.</p></footer>
+<script src="play.js" defer></script>
+<script src="flaps.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Face-box playground · claudia.gallery (study copy)</title>
+<meta name="description" content="A hero photo cropped to any screen, with the detector's box placed by the same arithmetic as the site.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="icon" href="https://claudia.gallery/favicon.png" type="image/png">
+<link rel="preload" href="../static/fonts/dinishcn-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../static/fonts/plexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../static/css/site.css">
+<link rel="stylesheet" href="../static/css/study-copy.css">
+<link rel="stylesheet" href="play.css">
+<style>
+  .screen-wrap { display: grid; place-items: center; padding: 26px 18px 18px; background: var(--bg); }
+  .screen { position: relative; overflow: hidden; background: #000; outline: 1px solid var(--line2); }
+  .screen img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; transform-origin: 50% 50%; }
+  .screen .cvbox { opacity: 1; transition: none; }
+  .truebox { position: absolute; border: 1px dashed var(--clay2); pointer-events: none; }
+  .truebox span { position: absolute; left: -1px; top: 100%; margin-top: 4px; padding: 3px 5px; font: 500 10px/1 var(--mono); letter-spacing: .06em; white-space: nowrap; color: var(--clay2); background: rgba(10,11,13,.66); }
+  #world svg text { font-family: var(--mono); font-weight: 500; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-h always">
+  <a class="brand" href="../" aria-label="claudia.gallery study copy, home"><span class="streak"></span>Claudia<small>.gallery</small></a>
+  <a class="study-tag" href="../#about-this-copy"><span class="st-long">Study </span>copy</a>
+  <button class="menu-b" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Playgrounds">
+    <a href="./">Playgrounds</a><a href="flaps.html">Split-flap</a><a href="facebox.html" aria-current="page">Face box</a><a href="lab.html">CSS lab</a><a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md">The guide</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="sec play">
+  <header class="sec-h"><span class="idx">06</span><h2>Face box</h2><p class="aside lab">Guide · section 6 · <a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/STUDY.md#6-the-face-boxes">read it</a></p></header>
+  <p class="intro">A hero photo, cropped to a screen you choose, with the detector's box placed by the same arithmetic as the site. Move the photo or change the screen, and watch where the box goes.</p>
+
+  <div class="bench">
+    <div class="pair">
+      <div class="panel main-view">
+        <div class="panel-h"><span class="lab">The screen</span><span class="lab" id="screen-note"></span></div>
+        <div class="screen-wrap" id="screen-wrap">
+          <div class="screen" id="screen">
+            <img id="photo" alt="" decoding="async">
+            <div class="truebox" id="truebox" hidden><span>where the face is</span></div>
+            <div class="cvbox" id="box"><span>a face <b id="score">0.65</b></span></div>
+          </div>
+        </div>
+        <div class="panel-b"><p class="say" id="verdict" aria-live="polite"></p></div>
+      </div>
+
+      <div class="panel ctl-panel">
+        <div class="panel-h"><span class="lab">Controls</span><button class="btn sm" id="reset" type="button">Reset</button></div>
+        <div class="ctl">
+          <div class="field">
+            <span class="lab">Photo</span>
+            <div class="chips" id="slides"></div>
+          </div>
+
+          <div class="field">
+            <span class="lab">Screen</span>
+            <div class="chips" id="screens"></div>
+            <div class="field-h"><label class="lab" for="W">Width</label><output class="val" id="W-o" for="W"></output></div>
+            <input class="range" type="range" id="W" min="320" max="1920" step="1">
+            <div class="field-h"><label class="lab" for="H">Height</label><output class="val" id="H-o" for="H"></output></div>
+            <input class="range" type="range" id="H" min="400" max="1400" step="1">
+          </div>
+
+          <div class="field">
+            <span class="lab">object-fit</span>
+            <div class="chips" id="fit">
+              <button type="button" data-fit="cover" aria-pressed="true">Cover</button>
+              <button type="button" data-fit="contain" aria-pressed="false">Contain</button>
+            </div>
+            <p class="hint">Cover fills the screen and crops the photo. Contain shows the whole photo and leaves empty bands.</p>
+          </div>
+
+          <div class="field">
+            <div class="field-h"><label class="lab" for="px">object-position, across</label><output class="val" id="px-o" for="px"></output></div>
+            <input class="range" type="range" id="px" min="0" max="100" step="1">
+            <div class="field-h"><label class="lab" for="py">object-position, down</label><output class="val" id="py-o" for="py"></output></div>
+            <input class="range" type="range" id="py" min="0" max="100" step="1">
+            <div class="row"><button class="btn sm" id="own-pos" type="button">Use the photo's own position</button></div>
+          </div>
+
+          <div class="field">
+            <span class="lab">Which place()</span>
+            <div class="chips" id="mode">
+              <button type="button" data-mode="site" aria-pressed="true">The site's</button>
+              <button type="button" data-mode="fixed" aria-pressed="false">Fixed</button>
+            </div>
+            <p class="hint" id="mode-hint"></p>
+          </div>
+
+          <div class="field">
+            <div class="field-h"><label class="lab" for="zoom">The slow zoom</label><output class="val" id="zoom-o" for="zoom"></output></div>
+            <input class="range" type="range" id="zoom" min="100" max="104.5" step="0.1">
+            <p class="hint">On the site each photo zooms from 104.5% to 100% over 10 seconds. place() works out the box for 100%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack extra">
+      <div class="panel">
+        <div class="panel-h"><span class="lab">The whole photo</span><span class="lab">Hatched: cropped away</span></div>
+        <div class="chart" id="world"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-h"><span class="lab" id="calc-title">place(), as the site runs it</span><span class="lab"><a href="https://github.com/plexormedia/claudia-gallery-study2/blob/main/static/js/site.js#L43-L51">site.js L43–L51</a></span></div>
+        <table class="calc" id="calc"></table>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="play-f"><p>Playgrounds for the study copy of the claudia.gallery homepage. Claudia by anabology; the site's design and code belong to its author. Photos load from <a href="https://claudia.gallery/">claudia.gallery</a>. <a href="https://github.com/plexormedia/claudia-gallery-study2">Source and credits</a>.</p></footer>
+<script src="play.js" defer></script>
+<script src="facebox.js" defer></script>
+</body>
+</html>

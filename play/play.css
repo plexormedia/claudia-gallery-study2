@@ -1,0 +1,117 @@
+/* Shared styles for the playgrounds. They build on ../static/css/site.css, so every colour, font and size comes
+   from the same tokens as the homepage. Only the controls (sliders, chips, panels, the code box) are new. */
+
+/* ---------- page ---------- */
+.play { padding-bottom: clamp(40px, 7vh, 88px); }
+.play .intro { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.45; max-width: 36em; margin: 0 0 clamp(22px, 3vw, 34px); }
+.sec-h.no-idx { grid-template-columns: 1fr auto; }
+@media (max-width: 760px) { .sec-h.no-idx { grid-template-columns: 1fr; } .sec-h.no-idx .aside { grid-column: auto; } }
+
+/* The live view and the controls side by side, with the extra readouts under the live view. Under 1000px everything
+   stacks, and the live view sticks to the top while you use the controls right under it. */
+.bench { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); grid-template-areas: "main ctl" "extra ctl"; grid-template-rows: auto 1fr; gap: clamp(18px, 2.4vw, 32px); align-items: start; }
+.pair { display: contents; }
+.main-view { grid-area: main; }
+.ctl-panel { grid-area: ctl; }
+.extra { grid-area: extra; }
+@media (max-width: 1000px) {
+  .bench { grid-template-columns: minmax(0, 1fr); grid-template-areas: "pair" "extra"; grid-template-rows: auto; }
+  .pair { display: block; grid-area: pair; }
+  .main-view { position: sticky; top: var(--hh); z-index: 5; }
+  .ctl-panel { margin-top: 18px; }
+}
+.stack { display: grid; gap: 18px; min-width: 0; }
+.chips.line { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.chips.line::-webkit-scrollbar { display: none; }
+
+/* ---------- panels ---------- */
+.panel { min-width: 0; border: 1px solid var(--line); background: var(--bg2); }
+.panel-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; min-height: 42px; padding: 8px 14px; border-bottom: 1px solid var(--line); }
+.panel-b { padding: 16px; }
+.panel .hint, .hint { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink3); }
+.hint b { color: var(--ink2); font-weight: 400; }
+.hint a { color: var(--ink2); }
+.say { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink2); }
+.say b { color: var(--ink); font-weight: 700; }
+.say .bad { color: var(--clay2); }
+
+/* ---------- controls ---------- */
+.ctl { display: grid; gap: 22px; padding: 16px 16px 20px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.field-h label, .field-h .lab { color: var(--ink2); }
+.field output, .val { font: 500 12.5px/1 var(--mono); color: var(--ink); white-space: nowrap; }
+.field .hint { font-size: 13px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.btn[aria-pressed=true] { border-color: var(--clay); color: var(--ink); background: rgba(217,119,87,.14); }
+.btn.sm { height: 36px; padding: 0 12px; font-size: 10.5px; }
+.btn:disabled { opacity: .45; cursor: default; }
+
+/* sliders: a thin track and a square clay thumb, big enough for a finger */
+.range { -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 32px; margin: 0; background: transparent; cursor: pointer; }
+.range::-webkit-slider-runnable-track { height: 2px; background: var(--line2); }
+.range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; margin-top: -9px; background: var(--clay); border: 0; border-radius: 0; }
+.range::-moz-range-track { height: 2px; background: var(--line2); }
+.range::-moz-range-thumb { width: 20px; height: 20px; background: var(--clay); border: 0; border-radius: 0; }
+.range:focus { outline: none; }
+.range:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+
+/* chips: a row of choices that wraps on narrow screens */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { min-height: 38px; padding: 0 12px; font: 500 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); border: 1px solid var(--line2); white-space: nowrap; transition: border-color .15s, color .15s; }
+.chips button:hover { border-color: var(--ink2); color: var(--ink); }
+.chips button[aria-pressed=true] { background: var(--ink); border-color: var(--ink); color: #0a0b0d; }
+
+/* text fields: 16px, so an iPad doesn't zoom in when you tap them */
+.input, .code-in { -webkit-appearance: none; appearance: none; width: 100%; border-radius: 0; border: 1px solid var(--line2); background: var(--bg); color: var(--ink); }
+.input { height: 44px; padding: 0 12px; font: 500 16px/1 var(--mono); letter-spacing: .08em; }
+.code-in { display: block; min-height: 190px; padding: 12px 14px; font: 400 16px/1.55 var(--mono); color: #dcd9d2; resize: vertical; border: 0; border-bottom: 1px solid var(--line); }
+.input:focus, .code-in:focus { outline: none; border-color: var(--clay); }
+.code-in:focus { box-shadow: inset 0 0 0 1px var(--clay); }
+.code-in::placeholder { color: var(--ink3); }
+
+/* live code: the site's prompt block, with the numbers you control picked out */
+.prompt.live { margin: 0; }
+.prompt.live pre { font-size: 13px; max-height: none; }
+.prompt.live pre b { color: var(--clay2); font-weight: 500; }
+.prompt.live pre i { font-style: normal; color: var(--ink3); }
+
+/* charts and drawings (SVG) */
+.chart { padding: 14px 14px 6px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart .ax { font: 500 11px var(--mono); fill: var(--ink3); }
+.chart .rl { font: 500 12px var(--mono); fill: var(--ink2); }
+.chart .lg { font: 500 10.5px var(--mono); letter-spacing: .1em; fill: var(--ink3); text-transform: uppercase; }
+.chart .hit { fill: transparent; cursor: pointer; }
+.chart .hit:hover, .chart .hit.on { fill: rgba(236,233,226,.05); }
+.chart-note { padding: 0 14px 14px; min-height: 22px; }
+.m-flip { fill: var(--bg4); }
+.m-win { fill: var(--clay); }
+.m-stop { fill: var(--ink); }
+.m-land { fill: var(--bg2); stroke: var(--ink); stroke-width: 1.5; }
+.m-grid { stroke: var(--line); }
+.m-now { stroke: var(--clay2); stroke-width: 1.5; }
+
+/* a legend in HTML above a chart, so it wraps on narrow screens */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 12px 14px 0; font: 500 10.5px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { display: inline-block; flex: none; }
+.sw.flip { width: 16px; height: 8px; background: var(--bg4); }
+.sw.win { width: 16px; height: 8px; background: var(--clay); }
+.sw.stop { width: 2px; height: 14px; background: var(--ink); }
+.sw.land { width: 9px; height: 9px; border: 1.5px solid var(--ink); background: var(--bg2); }
+
+/* the arithmetic, as a table */
+.calc { width: 100%; border-collapse: collapse; }
+.calc th, .calc td { padding: 9px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: baseline; }
+.calc tr:last-child th, .calc tr:last-child td { border-bottom: 0; }
+.calc th { font: 500 10.5px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); white-space: nowrap; }
+.calc td { font: 400 13px/1.5 var(--mono); color: var(--ink2); }
+.calc td.r { color: var(--ink); text-align: right; white-space: nowrap; }
+.calc td b { color: var(--clay2); font-weight: 400; }
+@media (max-width: 560px) { .calc th, .calc td { padding: 8px 10px; } .calc td { font-size: 12px; } }
+
+/* ---------- footer ---------- */
+.play-f { margin-top: clamp(40px, 7vh, 80px); border-top: 1px solid var(--line); }
+.play-f p { max-width: var(--max); margin: 0 auto; padding: 22px var(--pad) 36px; font-size: 13.5px; color: var(--ink3); }
+.play-f a { color: var(--ink2); }
