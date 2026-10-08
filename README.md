@@ -42,8 +42,9 @@ The first commit (`2c50741`) holds the homepage's HTML, CSS and JavaScript exact
    (TeX Gyre Heros, DINish, IBM Plex Mono). Plex Mono's `@font-face` rules gained a `unicode-range` so it covers exactly
    the characters the original's file does.
 4. **Analytics removed.** The original's Cloudflare analytics script reports to the site owner's account.
-5. **Labelled as a copy.** A "Study copy" tag in the header, a credit note in the footer, "(study copy)" in the title and
-   link previews, and a `noindex` tag so search engines don't list it. The canonical link still points to the original.
+5. **Labelled as a copy.** A "Study copy" tag in the header, a credit note in the footer (with links to the source and
+   the playgrounds), "(study copy)" in the title and link previews, and a `noindex` tag so search engines don't list it.
+   The canonical link still points to the original.
 
 The film-page scripts in `site.js` (gallery filters, lightbox) are unchanged and still expect the original site's paths;
 the homepage doesn't use them.
