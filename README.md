@@ -6,6 +6,8 @@ A study copy of the homepage of [claudia.gallery](https://claudia.gallery/), reb
 - Live copy: https://plexormedia.github.io/claudia-gallery-study2/
 - Original: https://claudia.gallery/
 - Terms for using Claudia and the site's images: https://claudia.gallery/use/
+- **Study guide: [STUDY.md](STUDY.md)** explains how the page is built: the colour and type system, the layout grid, and
+  the code behind the split-flap board and the face boxes, with diagrams and experiments to try.
 
 ## What's here
 
@@ -17,6 +19,7 @@ A study copy of the homepage of [claudia.gallery](https://claudia.gallery/), reb
 | `static/js/site.js` | The original script: split-flaps, hero slideshow and detector boxes, header, video loops, copy buttons, gallery, lightbox, film player |
 | `static/js/hls.light.min.js` | hls.js 1.7.3 (Apache 2.0), byte-identical to the file the original serves |
 | `static/fonts/` | The fonts, rebuilt from their official releases. See `static/fonts/README.md` |
+| `STUDY.md`, `docs/study/` | The study guide and its figures |
 
 Only the homepage is copied. Links to the site's other pages, and all images, videos and films, point to claudia.gallery,
 which allows other sites to load them. Please keep it that way: no bulk downloading.
@@ -44,6 +47,8 @@ the homepage doesn't use them.
 ## Licences
 
 - Claudia and the site's images are used as the original site allows: https://claudia.gallery/use/
+- The study guide's figures in `docs/study/` are drawn from the page. Two of them (`looks-bug.jpg`, `hero-facebox.png`)
+  are screenshots with Claudia's images in them, used on the same terms.
 - The page's HTML, CSS and JavaScript belong to their author; they are reproduced here for study, with credit.
 - Fonts: GUST Font License (TeX Gyre Heros) and SIL Open Font License 1.1 (DINish, IBM Plex Mono). Licence files and
   details are in `static/fonts/`.
