@@ -248,7 +248,7 @@
     if (v.canPlayType("application/vnd.apple.mpegurl")) { v.src = src; go(); return; }
     const attach = () => { const h = new window.Hls({ capLevelToPlayerSize: true }); h.loadSource(src); h.attachMedia(v); v._hls = h; h.on(window.Hls.Events.MANIFEST_PARSED, go); };
     if (window.Hls) return attach();
-    const s = document.createElement("script"); s.src = "/static/js/hls.light.min.js"; s.onload = attach; document.head.appendChild(s);
+    const s = document.createElement("script"); s.src = "static/js/hls.light.min.js"; s.onload = attach; document.head.appendChild(s);
   }));
   if (pl) {
     const close = () => { const v = $("video", pl); v.pause(); v._hls?.destroy(); v._hls = null; v.removeAttribute("src"); v.load(); pl.hidden = true; document.documentElement.style.overflow = ""; };

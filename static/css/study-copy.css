@@ -1,0 +1,8 @@
+/* Additions for the study copy. Not part of claudia.gallery.
+   site.css is the original stylesheet; its only edits are the font paths and Plex Mono's unicode-range. */
+.study-tag{font:500 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);padding:5px 7px;text-decoration:none;white-space:nowrap}
+@media (max-width:374px){.study-tag{margin-left:-8px}.study-tag .st-long{display:none}} /* the full label needs 364px next to the brand and menu */
+.study-tag:hover{color:var(--ink);border-color:var(--clay)}
+.site-f .study-note,.site-f .study-note a{color:var(--ink2)}
+.site-f .study-note a{display:inline;padding:0;text-decoration:underline;text-decoration-color:var(--line2)}
+.site-f .study-note a:hover{color:var(--ink);text-decoration-color:var(--clay)}

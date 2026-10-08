@@ -1,11 +1,11 @@
 /* claudia.gallery — one black canvas, one clay accent, three film skins (ev · cly · bliss). */
-@font-face{font-family:"Heros";src:url(/static/fonts/heros-400.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Heros";src:url(/static/fonts/heros-400i.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"Heros";src:url(/static/fonts/heros-700.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Heros Cn";src:url(/static/fonts/heroscn-700.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"DINish Cn";src:url(/static/fonts/dinishcn-900.woff2) format("woff2");font-weight:900;font-display:swap}
-@font-face{font-family:"Plex Mono";src:url(/static/fonts/plexmono-400.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Plex Mono";src:url(/static/fonts/plexmono-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Heros";src:url(../fonts/heros-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Heros";src:url(../fonts/heros-400i.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Heros";src:url(../fonts/heros-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Heros Cn";src:url(../fonts/heroscn-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"DINish Cn";src:url(../fonts/dinishcn-900.woff2) format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(../fonts/plexmono-400.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0020-007E,U+00A0-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2010-2011,U+2013-2014,U+2018-201A,U+201C-201E,U+2020-2022,U+2026,U+2030,U+2032-2033,U+2039-203A,U+2044,U+2070,U+2074-2079,U+20AC,U+2122,U+2190-2199,U+2212,U+2248,U+2260,U+2264-2265,U+2713}
+@font-face{font-family:"Plex Mono";src:url(../fonts/plexmono-500.woff2) format("woff2");font-weight:500;font-display:swap;unicode-range:U+0020-007E,U+00A0-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2010-2011,U+2013-2014,U+2018-201A,U+201C-201E,U+2020-2022,U+2026,U+2030,U+2032-2033,U+2039-203A,U+2044,U+2070,U+2074-2079,U+20AC,U+2122,U+2190-2199,U+2212,U+2248,U+2260,U+2264-2265,U+2713}
 
 :root{
   --bg:#0a0b0d;--bg2:#111317;--bg3:#181b20;--bg4:#20242a;
